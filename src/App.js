@@ -28,9 +28,10 @@ const App = () => {
     <div className="App">
       Products:
       <div className="wrap">
-        {products.map((p) => {
-          return <Card key={p.id} n={p} />;
-        })}
+        {products &&
+          products.map((p) => {
+            return <Card key={p.id} n={p} />;
+          })}
       </div>
       <button onClick={addProduct}>Add product</button>
     </div>
