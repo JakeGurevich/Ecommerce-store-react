@@ -11,18 +11,18 @@ const App = () => {
 
   const getProducts = async () => {
     let res = await api.get("/items");
-    setProducts({ products: res.data });
     console.log(res.data);
+    setProducts(res.data);
   };
 
   const addProduct = async (p) => {
     let res = await api.post("/items", { id: 9, name: "Phone", price: "200" });
-    console.log(res);
-    this.getProducts();
+    console.log(res.data);
+    getProducts();
   };
   useEffect(() => {
     getProducts();
-  });
+  }, []);
 
   return (
     <div className="App">
@@ -32,6 +32,7 @@ const App = () => {
           products.map((p) => {
             return <Card key={p.id} n={p} />;
           })}
+        {console.log(products)}
       </div>
       <button onClick={addProduct}>Add product</button>
     </div>
