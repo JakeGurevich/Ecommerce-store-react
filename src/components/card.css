@@ -1,11 +1,50 @@
 .card {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 400px;
   background: gainsboro;
   color: rgb(32, 56, 32);
   margin: 10px;
 }
-img {
-  width: 50px;
-  height: 50px;
+.card img {
+  width: 300px;
+  height: 300px;
+}
+
+.deletedCard {
+  width: 100px;
+  height: 100px;
+  background: gainsboro;
+  color: rgb(32, 56, 32);
+  margin: 10px;
+}
+.deletedCard img {
+  width: 20px;
+  height: 20px;
+}
+.cartItem {
+  width: 70%;
+  height: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.cartItem img {
+  width: 20px;
+  height: 20px;
+}
+.del {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.del img {
+  width: 20px;
+  height: 20px;
+}
+.cartItemWrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
