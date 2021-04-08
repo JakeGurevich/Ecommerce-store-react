@@ -10,6 +10,8 @@ const api = axios.create({
 const Cart = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [deletedItem, setDeletedItem] = useState(null);
+
+  let itemsInCart = 0;
   //   const { update } = props.location.state;
   console.log(props);
   useEffect(() => {
@@ -28,18 +30,51 @@ const Cart = (props) => {
     // update(res.data);
     console.log(deletedItem);
   };
+  const checkSum = () => {
+    let sum = 0;
+
+    cartItems.map((item) => {
+      console.log(item.price);
+      sum = sum + Number(item.price) * item.quantity;
+      console.log(sum);
+    });
+    return sum;
+  };
+  const updateCart = async (param, item) => {
+    let updateID = `/cart/${item.id}`;
+    if (param === "more") {
+      let res = await api.put(updateID, { quantity: item.quantity + 1 });
+    } else {
+      let res = await api.put(updateID, { quantity: item.quantity - 1 });
+      console.log(res.data);
+    }
+    setDeletedItem(item);
+  };
   const displayCards =
     cartItems &&
     cartItems.map((p) => {
-      return <Card key={p.id} n={p} style="cart" delete={deleteItem} />;
+      itemsInCart = itemsInCart + p.quantity;
+
+      return (
+        <Card
+          key={p.id}
+          n={p}
+          style="cart"
+          delete={deleteItem}
+          update={updateCart}
+        />
+      );
     });
 
   return (
     <>
       <div className="cartContainer">
-        <div className="cartItemsContainer">Cart{displayCards}</div>
+        <div className="cartItemsContainer">
+          Cart <span>({itemsInCart})</span>
+          {displayCards}
+        </div>
         <div className="total">
-          <span>Total :</span>
+          <span>Total : {checkSum()}$</span>
           <button>Proceed to checkout</button>
         </div>
         <div className="btn">

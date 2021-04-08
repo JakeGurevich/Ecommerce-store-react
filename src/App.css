@@ -4,8 +4,8 @@
 .wrap {
   margin-top: 100px;
   display: flex;
-  flex-direction: row;
-  /* flex-wrap: wrap; */
+
+  flex-wrap: wrap;
 }
 /* 
 -------------header */
@@ -18,6 +18,13 @@
   align-items: center;
   position: fixed;
 }
+.logo {
+  margin-left: 50px;
+}
+.logo img {
+  width: 90px;
+  height: 90px;
+}
 .nav {
   display: flex;
   margin: 5px;
@@ -29,10 +36,14 @@
   text-align: center;
   font-size: 1.3rem;
 }
+.link:hover {
+  border: 2px solid white;
+}
 .link {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.7em 1.5em;
 }
 .cart {
   width: 50px;
@@ -40,20 +51,32 @@
   margin-right: 30px;
   margin-left: 30px;
   position: relative;
+  transition: all 0.4s ease-in-out;
+}
+.cart:hover {
+  transform: scale(1.3);
 }
 .cartUpdate {
   position: absolute;
   top: -10px;
   left: 25px;
   color: orange;
+  /* transition: all 0.2s ease-in-out; */
+}
+.cartUpdate:hover {
+  /* transform: scale(1.3); */
 }
 .cart img {
   width: 50px;
   height: 50px;
+  /* transition: all 0.2s ease-in-out; */
 }
 .deleted {
   border: 1px solid gray;
   display: flex;
+}
+.cart img:hover {
+  /* transform: scale(1.3); */
 }
 .cartContainer {
   width: 400px;
@@ -68,6 +91,9 @@
 
   background: aliceblue;
 }
+.cartItemsContainer span {
+  color: orange;
+}
 .total {
   width: 400px;
   display: flex;
@@ -76,4 +102,41 @@
   align-self: flex-end;
 
   background: aliceblue;
+}
+.changeCount img {
+  width: 20px;
+  height: 20px;
+}
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 0.7em 1.5em;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  transform: scale(1.1);
+}
+.input {
+  font-size: 16px;
+  font-size: max(16px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #fff;
+  border: 2px solid rgb(102, 190, 241);
+  border-radius: 4px;
+}
+label {
+  margin-left: 15px;
+  margin-right: 5px;
+}
+.admin {
+  margin: 20px;
+}
+.admin span {
+  font-weight: bold;
+  color: darkslategray;
+  font-size: 1.5rem;
 }

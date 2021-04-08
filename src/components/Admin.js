@@ -8,6 +8,10 @@ const Admin = (props) => {
   const [category, setCategory] = useState("");
   return (
     <>
+      <div className="admin">
+        {console.log(props)}
+        <span>Admin Panel</span>
+      </div>
       <label>Category</label>
       <input type="text" onChange={(e) => setCategory(e.target.value)}></input>
       <label>Name</label>
@@ -17,12 +21,14 @@ const Admin = (props) => {
       <input type="text" onChange={(e) => setPrice(e.target.value)}></input>
       <label>Img</label>
       <input type="text" onChange={(e) => setImg(e.target.value)}></input>
-      <div className="admin">{console.log(props)}Admin Panel</div>
-      <button onClick={() => props.back(false)}>Back to products</button>
       <button onClick={() => props.add({ category, name, price, img })}>
         Add product
       </button>
       <button onClick={() => props.delete()}>Delete product</button>
+      <div>
+        <button onClick={() => props.back(false)}>Back to products</button>
+      </div>
+
       <DisplayCards list={props.list} cssClass="deleted" />
     </>
   );

@@ -14,13 +14,13 @@ const Display = () => {
   const [showAdmin, setShowAdmin] = useState(false);
   const [newProducts, setNewProduct] = useState([]);
   const [deletedProducts, setDeletedProducts] = useState([]);
-  const [updateCart, setUpdateCart] = useState([]);
+  const [addedToCart, setAddedToCart] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     getProducts();
     getCart();
-  }, [newProducts, deletedProducts, updateCart]);
+  }, [newProducts, deletedProducts, addedToCart]);
   const getProducts = async () => {
     let res = await api.get("/items");
     console.log(res.data);
@@ -31,6 +31,7 @@ const Display = () => {
     let res = await api.get("/cart");
     console.log(res.data);
     setCartItems(res.data);
+    checkSum();
   };
   const deleteProduct = async () => {
     const last = products[products.length - 1];
@@ -42,10 +43,33 @@ const Display = () => {
     console.log(deletedProducts);
   };
   const addToCart = async (p) => {
-    console.log(p);
-    let res = await api.post("/cart", p);
-    console.log(res.data);
-    setUpdateCart(p);
+    p.quantity = 1;
+
+    const isInCart = cartItems.find((item) => {
+      return item.name === p.name ? true : false;
+    });
+
+    console.log(isInCart);
+    if (!isInCart) {
+      let res = await api.post("/cart", p);
+      console.log(res.data);
+    } else {
+      let updateID = `/cart/${isInCart.id}`;
+      let res = await api.put(updateID, { quantity: isInCart.quantity + 1 });
+      console.log(res.data);
+    }
+
+    setAddedToCart([...addedToCart, p]);
+  };
+  const checkSum = () => {
+    let sum = 0;
+
+    cartItems.map((item) => {
+      console.log(item.quantity);
+      sum += item.quantity;
+      console.log(sum);
+    });
+    return sum;
   };
   const displayCards =
     products &&
@@ -77,7 +101,7 @@ const Display = () => {
     />
   ) : (
     <div className="App">
-      <Header inCart={cartItems.length} update={setUpdateCart} />
+      <Header inCart={checkSum()} update={setAddedToCart} />
       Products:
       <div className="wrap">{displayCards}</div>
       <button onClick={() => setShowAdmin(!showAdmin)}>

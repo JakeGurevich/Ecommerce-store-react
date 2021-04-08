@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import img from "./cart2.png";
+import logo from "../img/logo.png";
 
 const Header = (props) => {
   const update = "";
   return (
     <div className="header">
-      <div className="logo"></div>
+      <div className="logo">
+        <img src={logo} />
+      </div>
       <div className="nav">
         <div className="link">
           <Link to="/">All products</Link>

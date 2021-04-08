@@ -1,9 +1,12 @@
 .card {
   width: 300px;
-  height: 400px;
-  background: gainsboro;
+  height: 420px;
+  background: rgb(216, 241, 248);
   color: rgb(32, 56, 32);
-  margin: 10px;
+  margin: px;
+}
+.cardWrap {
+  margin: 25px;
 }
 .card img {
   width: 300px;
@@ -39,12 +42,20 @@
   justify-content: center;
   align-items: center;
 }
+.del:hover {
+  cursor: pointer;
+}
 .del img {
   width: 20px;
   height: 20px;
+  transition: all 0.2s ease-in-out;
 }
 .cartItemWrap {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.del img:hover {
+  transform: scale(1.1);
 }
